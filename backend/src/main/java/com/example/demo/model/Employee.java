@@ -1,16 +1,33 @@
 package com.example.demo.model;
 
-import java.time.LocalDate;
+
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+
+@Getter
+@Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Employee {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
 
     private String password;
@@ -19,48 +36,9 @@ public class Employee {
 
     private String rank;
 
-    private LocalDate joinDate;
+    private Date joinDate;
 
     @Enumerated(EnumType.STRING)
     private UserRole role;
-
-    public String getName(){
-        return name;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public String getPassword(){
-        return password;
-    }
-
-    public String getPart(){
-        return part;
-    }
-
-    public void setPart(String part){
-        this.part = part;
-    }
-
-    public String getRank(){
-        return rank;
-    }
-
-    public void setRank(String rank){
-        this.rank = rank;
-    }
-    public LocalDate getJoinDate(){
-        return joinDate;
-    }
-
-    public void setJoinDate(LocalDate date){
-        this.joinDate = date;
-    }
-
-    public UserRole getRole(){
-        return role;
-    }
     
 }
