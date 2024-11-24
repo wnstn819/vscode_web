@@ -8,7 +8,15 @@ export type Employee = {
   role: string | null;
 };
 
-export type Login = {
+export type Loign = {
   name: string;
   password: string;
 };
+
+export type Join = {
+  name: string;
+  password: string;
+  role: Role;
+};
+
+export type Role = "ADMIN" | "USER";

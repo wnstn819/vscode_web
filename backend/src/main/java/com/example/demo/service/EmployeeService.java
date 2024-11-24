@@ -42,6 +42,7 @@ public class EmployeeService {
             .password(data.getPassword())
             .rank(data.getRank())
             .part(data.getPart())
+            .role(data.getRole())
             .build();
 
             employeeRepository.save(em);

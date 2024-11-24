@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Employee, Login } from "./type";
+import { Employee, Join, Login } from "./type";
 
 export const getEmployeeList = async () => {
   const response = await axios.get("http://localhost:8080/api/list");
@@ -14,12 +14,13 @@ export const postLogin = async (data: Login) => {
   return response.data;
 };
 
-export const postJoin = async (data: Login) => {
-  console.log("왜 여기 안옴");
+export const postJoin = async (data: Join) => {
+  console.log("role : " + data.role);
 
   const response = await axios.post("http://localhost:8080/api/user", {
     name: data.name,
     password: data.password,
+    role: data.role,
   });
   return response.data;
 };

@@ -72,6 +72,8 @@ public class EmployeeController {
 
         boolean result = employeeService.joinEmployee(data);
 
+       System.out.println(data.getName() + " : " + data.getRole());
+
         if(result){
             return ResponseEntity.ok(ResponseDTO.res(HttpStatus.OK,"생성 완료"));
         }else{

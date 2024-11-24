@@ -1,15 +1,33 @@
 import { useState } from "react";
 import { postJoin } from "../../../api/service";
 import { useNavigate } from "react-router-dom";
+import { Role } from "../../../api/type";
 
 export const Join = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");
+  const [currentValue, setCurrentValue] = useState<Role>("USER");
   const navigate = useNavigate();
 
+  const [isDropdownView, setDropdownView] = useState(false);
+
+  const handleClickContainer = () => {
+    setDropdownView(!isDropdownView);
+  };
+
+  const handleBlurContainer = () => {
+    setTimeout(() => {
+      setDropdownView(false);
+    }, 200);
+  };
+
   const join = async () => {
-    const result = await postJoin({ name: name, password: password });
+    const result = await postJoin({
+      name: name,
+      password: password,
+      role: currentValue,
+    });
 
     if (result.statusCode == "BAD_REQUEST") {
       setStatus(result.resultMsg);
@@ -48,6 +66,40 @@ export const Join = () => {
         ></input>
         <button onClick={join}>가입</button>
         {status != "" && <text>{status}</text>}
+
+        <div
+          className="container"
+          style={{ position: "relative" }}
+          onBlur={handleBlurContainer}
+        >
+          <label onClick={handleClickContainer}>
+            <button>
+              {currentValue}
+              {isDropdownView ? "▲" : "▼"}
+            </button>
+          </label>
+          {isDropdownView && (
+            <div
+              style={{
+                position: "absolute",
+                top: "100%",
+                left: "0" /* 왼쪽 정렬 */,
+                backgroundColor: "white",
+                border: "1px solid #ccc",
+                padding: "8px",
+                zIndex: "10",
+                width: "150px",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <ul>
+                {["ADMIN", "USER"].map((li, i) => (
+                  <li onClick={() => setCurrentValue(li)}>{li}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
