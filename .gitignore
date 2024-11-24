@@ -1,0 +1,51 @@
+# Node.js 관련 파일
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 빌드 출력 디렉터리
+dist/
+build/
+
+# 환경 변수 파일
+.env
+.env.local
+.env.*.local
+
+# 로그 파일
+*.log
+
+# Editor 설정 파일
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS별 임시 파일
+.DS_Store
+Thumbs.db
+
+# Git 관련 파일
+*.orig
+
+# TypeScript 빌드 출력
+*.tsbuildinfo
+
+# Webpack/Babel 빌드 출력
+*.cache/
+.cache-loader/
+
+# ESLint/Prettier 캐시
+eslintcache
+.prettier-cache/
+
+# Storybook
+.storybook-out/
+
+# Test 관련 파일
+coverage/
+*.lcov
